@@ -7,6 +7,8 @@
 
 #define NULL (0)
 
+const char init2[] = "Inside Serial";
+
 void outb(short unsigned int port, unsigned char value)
 {
 	asm volatile("outb %0, %1"
@@ -45,12 +47,17 @@ int init_serial() {
    return 0;
 }
 
-void serial_write_text(int serial_port, const char *text)
+void serial_write_text(int serial_port, const char *text, int size)
 {
-	while (text != 0)
+    int count = 0;
+    unsigned char * vidmem = (unsigned char *)0xB8000;
+	for (int i = 0; i < size; i++)
 	{
+        *vidmem++ = text[i];
+        *vidmem++ = 0x1B;
 		while ((inb(serial_port + 5) & 0x20) == 0);
-		outb(serial_port, *text);
-        text++;
+		outb(serial_port, text[i]);
+        count++;
 	}
+    asm volatile("hlt");
 }

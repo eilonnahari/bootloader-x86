@@ -43,7 +43,7 @@ reset_drive:
     mov es, ax          
     mov bx, 0x1000
     mov ah, 02h
-    mov al, 02h
+    mov al, 06h
     mov ch, 0
     mov cl, 02h
     mov dh, 0
@@ -75,11 +75,10 @@ pmode_entry:
 	mov ax, DATA_SEG
 	mov ds, ax
 	mov ss, ax
+    mov ebp, 0x90000
     mov esp, 0x90000
-    mov esi, 0x1000
-    out 0x46, al
+    mov esi, prot_mod_wel
     call print_pmode
-    hlt
     jmp CODE_SEG:0x1000     ; Jump to our C code.
 
 ; Prints a null terminated ASCII string

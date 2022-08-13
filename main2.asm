@@ -77,6 +77,7 @@ pmode_entry:
 	mov ss, ax
     mov esp, 0x90000
     mov esi, 0x1000
+    out 0x46, al
     call print_pmode
     hlt
     jmp CODE_SEG:0x1000     ; Jump to our C code.

@@ -47,17 +47,17 @@ int init_serial() {
    return 0;
 }
 
-void serial_write_text(int serial_port, const char *text, int size)
+void serial_write_text(int serial_port, const unsigned char *text, int size)
 {
     int count = 0;
-    unsigned char * vidmem = (unsigned char *)0xB8000;
+    //unsigned char * vidmem = (unsigned char *)0xB8000;
 	for (int i = 0; i < size; i++)
 	{
-        *vidmem++ = text[i];
-        *vidmem++ = 0x1B;
+        //*vidmem++ = text[i];
+        //*vidmem++ = 0x1B;
 		while ((inb(serial_port + 5) & 0x20) == 0);
 		outb(serial_port, text[i]);
         count++;
 	}
-    asm volatile("hlt");
+    //asm volatile("hlt");
 }

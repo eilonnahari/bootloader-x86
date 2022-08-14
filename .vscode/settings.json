@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ports.h": "c"
+        "ports.h": "c",
+        "*.txt": "c"
     }
 }

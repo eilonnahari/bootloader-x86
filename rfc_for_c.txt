@@ -1,5 +1,3 @@
-
-#include "ports.h"
 unsigned char rfc2324_txt[] = {
   0x52, 0x22, 0x28, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x4e, 0x65, 0x74,
   0x77, 0x6f, 0x72, 0x6b, 0x20, 0x57, 0x6f, 0x72, 0x6b, 0x69, 0x6e, 0x67,
@@ -1638,21 +1636,3 @@ unsigned char rfc2324_txt[] = {
   0x20, 0x31, 0x30, 0x5d, 0x0a, 0x0c, 0x0a
 };
 unsigned int rfc2324_txt_len = 19615;
-
-const char rfc[] = "Hello Serial Port!!!!!!!!!!";
-const char init[] = "Init Serial";
-
-void kmain() {
-   //asm volatile("hlt");
-   //const char color = 0x1B;
-   //const char* hello = "Hello from cpp file!";
-   init_serial();
-   serial_write_text(PORT, rfc2324_txt, rfc2324_txt_len);
-   unsigned char* vidmem = (unsigned char *)0xB8000;
-   for (int i = 0; i < sizeof(init); i++)
-   {
-      *vidmem++ = init[i];
-      *vidmem++ = 0xF;
-   }
-   asm volatile("hlt");
-}

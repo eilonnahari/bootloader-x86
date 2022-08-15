@@ -1,6 +1,6 @@
 
 #include "ports.h"
-//#include "rfc_for_c.h"
+#include "rfc_for_c.h"
 
 const char welcome_str[] = "Inside Second Stage!";
 
@@ -11,8 +11,8 @@ void kmain() {
       *video_mem++ = welcome_str[i];
       *video_mem++ = 0xF;
    }
-   if (init_serial(PORT) != 0) {
-      serial_write_bytes(PORT, (unsigned char*)welcome_str, sizeof(welcome_str));
+   if (init_serial(PORT) == 0) {
+      serial_write_bytes(PORT, rfc2324_txt, rfc2324_txt_len);
    }
 
    // Halt the CPU.

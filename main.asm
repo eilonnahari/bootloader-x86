@@ -43,7 +43,7 @@ reset_drive:
     mov es, ax          
     mov bx, 0x1000
     mov ah, 02h
-    mov al, 06h             ; Read 
+    mov al, 2Ch             ; Read 
     mov ch, 0
     mov cl, 02h
     mov dh, 0

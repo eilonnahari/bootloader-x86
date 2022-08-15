@@ -1,4 +1,4 @@
-"C:\Program Files\NASM\nasm.exe" main2.asm -f bin -o boot.bin
+"C:\Program Files\NASM\nasm.exe" main.asm -f bin -o boot.bin
 
 gcc -c -g -Os -m32 -ffreestanding -nostdlib -lgcc -Wall -Werror -I. -o kernel.o kernel.c
 gcc -c -g -Os -m32 -ffreestanding -nostdlib -lgcc -Wall -Werror -I. -o ports.o ports.c
